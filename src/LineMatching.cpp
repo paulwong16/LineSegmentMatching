@@ -291,7 +291,7 @@ void CLineMatching::descriptorEvaluationUniquePtMatches()
 void CLineMatching::lineMatches2Mat(Mat &mline)
 {
 	string fileName = _outFileName;
-	ofstream outFile(fileName.c_str(), ios_base::out);  //按新建或覆盖方式写入  	
+	ofstream outFile(fileName.c_str(), ios_base::out);  
 
 	vector<int> vser;
 	int nmatch = vstrLineMatch.size();	
@@ -305,7 +305,7 @@ void CLineMatching::lineMatches2Mat(Mat &mline)
 			strline2[ser2].pe.x, strline2[ser2].pe.y);
 		mline.push_back(tmat);
 		vser.push_back(ser1);
-		//	outFile<< ser1 << ' ' << ser2 <<endl;   //每列数据用 tab 隔开  			
+		//	outFile<< ser1 << ' ' << ser2 <<endl;   			
 	}		
 	vector<int> vsidex;
 	sortIdx(vser, vsidex, SORT_EVERY_ROW);
@@ -315,7 +315,7 @@ void CLineMatching::lineMatches2Mat(Mat &mline)
 		int ser = vsidex.at(i);
 		int ser1 = vstrLineMatch[ser].serLine1;		
 		int ser2 = vstrLineMatch[ser].serLine2;		
-		outFile<< ser1 << ' ' << ser2 <<endl;   //每列数据用 tab 隔开  			
+		outFile<< ser1 << ' ' << ser2 <<endl;    			
 	}
 }
 
@@ -4231,7 +4231,7 @@ void CLineMatching::concatenateTwoImgs(Mat mImg1, Mat mImg2, Mat &outImg)
 	cvSetImageROI( stacked, cvRect(img1.width, 0, img2.width, img2.height) ); 
 	cvCopy(&img2, stacked);//, stacked, NULL ); 
 	cvResetImageROI(stacked); 
-	outImg = Mat(stacked,0);
+	outImg = cvarrToMat(stacked,0);
 }
 
 void CLineMatching::getPointsonPolarline(vector<Point2f> &PointSet1,vector<Point2f> &PointSet2, Mat_<double> F, double T, bool *pbIsKept)
